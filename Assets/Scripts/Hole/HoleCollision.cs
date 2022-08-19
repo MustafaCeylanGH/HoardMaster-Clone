@@ -6,20 +6,26 @@ using TMPro;
 public class HoleCollision : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI moneyTextPrefab;
-    [SerializeField] private GameObject moneyCanvas;
-    public int currentMoney;
+    [SerializeField] private GameObject moneyCanvas;    
+    [SerializeField] private GameObject fullCircle;
+
+    private GameManager gameManager;
     private Vector3 textPos;
-       
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }   
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Money"))
+        if (other.gameObject.CompareTag("Money") && fullCircle.activeSelf != true)
         {
             if (CollectibleItem.soldGoldCount > 0)
             {
                 for (int i = 0; i < CollectibleItem.soldGoldCount; i++)
                 {
-                    currentMoney += CollectibleItem.goldMoneyValue;
+                    gameManager.currentMoney += CollectibleItem.goldMoneyValue;
                     moneyTextPrefab.text = "+" + CollectibleItem.goldMoneyValue.ToString();
                     TextMeshProUGUI newGoldText = Instantiate(moneyTextPrefab, gameObject.transform.position + TextRandomPos(), moneyCanvas.transform.rotation, moneyCanvas.transform);                    
                     Destroy(newGoldText.transform.gameObject, 1f);
@@ -30,7 +36,7 @@ public class HoleCollision : MonoBehaviour
             {
                 for (int i = 0; i < CollectibleItem.soldSilverCount; i++)
                 {
-                    currentMoney += CollectibleItem.silverMoneyValue;
+                    gameManager.currentMoney += CollectibleItem.silverMoneyValue;
                     moneyTextPrefab.text = "+" + CollectibleItem.silverMoneyValue.ToString();
                     TextMeshProUGUI newSilverText= Instantiate(moneyTextPrefab, gameObject.transform.position + TextRandomPos(), moneyCanvas.transform.rotation, moneyCanvas.transform);
                     Destroy(newSilverText.transform.gameObject, 1f);                    
@@ -41,7 +47,7 @@ public class HoleCollision : MonoBehaviour
             {
                 for (int i = 0; i < CollectibleItem.soldRedCrystalCount; i++)
                 {
-                    currentMoney += CollectibleItem.redCrystalMoneyValue;
+                    gameManager.currentMoney += CollectibleItem.redCrystalMoneyValue;
                     moneyTextPrefab.text = "+" + CollectibleItem.redCrystalMoneyValue.ToString();
                     TextMeshProUGUI newRedCrystalText = Instantiate(moneyTextPrefab, gameObject.transform.position + TextRandomPos(), moneyCanvas.transform.rotation, moneyCanvas.transform);
                     Destroy(newRedCrystalText.transform.gameObject, 1f);
@@ -52,7 +58,7 @@ public class HoleCollision : MonoBehaviour
             {
                 for (int i = 0; i < CollectibleItem.soldGemstoneCount; i++)
                 {
-                    currentMoney += CollectibleItem.gemstoneMoneyValue;
+                    gameManager.currentMoney += CollectibleItem.gemstoneMoneyValue;
                     moneyTextPrefab.text = "+" + CollectibleItem.gemstoneMoneyValue.ToString();
                     TextMeshProUGUI newGemstoneText = Instantiate(moneyTextPrefab, gameObject.transform.position + TextRandomPos(), moneyCanvas.transform.rotation, moneyCanvas.transform);
                     Destroy(newGemstoneText.transform.gameObject, 1f);

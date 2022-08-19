@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectibleItem 
+public class CollectibleItem
 {
     //CollectedCounts
     public static int collectedGoldCount { get; set; }
@@ -24,5 +24,9 @@ public class CollectibleItem
     public static int soldRedCrystalCount { get; set; }
     public static int soldGemstoneCount { get; set; }
     public static int soldTotalItemCount { get; set; }
+
+    //ItemsCount
+    public static int itemsCount { get; set; }
+
 }
 

@@ -10,6 +10,7 @@ public class UndergroundCollision : MonoBehaviour
         {
             CollectibleItem.collectedGoldCount++;
             CollectibleItem.collectedTotalItemCount++;
+            CollectibleItem.itemsCount++;
             GameObject goldParent = other.transform.parent.gameObject;
             Destroy(goldParent);
         }
@@ -17,6 +18,7 @@ public class UndergroundCollision : MonoBehaviour
         {
             CollectibleItem.collectedSilverCount++;
             CollectibleItem.collectedTotalItemCount++;
+            CollectibleItem.itemsCount++;
             GameObject silverParent = other.transform.parent.gameObject;
             Destroy(silverParent);
         }
@@ -24,12 +26,14 @@ public class UndergroundCollision : MonoBehaviour
         {
             CollectibleItem.collectedRedCrystalCount++;
             CollectibleItem.collectedTotalItemCount++;
+            CollectibleItem.itemsCount++;
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Gemstone"))
         {
             CollectibleItem.collectedGemstoneCount++;
             CollectibleItem.collectedTotalItemCount++;
+            CollectibleItem.itemsCount++;
             Destroy(other.gameObject);
         }
     }   

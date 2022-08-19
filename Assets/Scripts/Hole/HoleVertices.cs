@@ -18,11 +18,14 @@ public class HoleVertices : MonoBehaviour
     private float distance;
     private int verticesCount;
     private Vector3[] vertices;
+    private float scaleUpValue = 1.1f;
+    private HoleMovement holeMovement;
 
     private void Awake()
     {
         mesh = meshFilter.mesh;
         FindVertices();
+        holeMovement = GetComponent<HoleMovement>();
     }
 
     private void Update()
@@ -58,9 +61,38 @@ public class HoleVertices : MonoBehaviour
         meshFilter.mesh = mesh;        
     }
 
+    public void UpScaleHole()
+    {
+        vertices = mesh.vertices;
+        for (int i = 0; i < verticesCount; i++)
+        {
+            vertices[holeVertices[i]] = holeCenter.position + offsets[i]* scaleUpValue;
+        }
+
+        mesh.vertices = vertices;
+        meshCollider.sharedMesh = mesh;
+        meshFilter.mesh = mesh;
+
+        holeCenter.localScale *= scaleUpValue;
+        radius *= scaleUpValue;
+        ChangeBoundaryValues();
+
+        for (int i = 0; i < offsets.Count; i++)
+        {
+            offsets[i] *= scaleUpValue;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(holeCenter.position, radius);
+    }
+
+    private void ChangeBoundaryValues()
+    {
+        holeMovement.boundaryXValue /= scaleUpValue * 0.95f;        
+        holeMovement.boundaryZValue /= scaleUpValue * 0.93f;
+       
     }
 }

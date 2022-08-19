@@ -5,13 +5,13 @@ using UnityEngine;
 public class HoleMovement : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick floatingJoystick;
-    [SerializeField] private float moveSpeed;    
+    public float moveSpeed { get; set; } = 1.0f;    
 
     private float horizontal;
     private float vertical;
     private Vector3 addedPos;    
-    private float boundaryXValue = 1.6f;
-    private float boundaryZValue = 2.6f;
+    public float boundaryXValue { get; set; } = 1.6f;
+    public float boundaryZValue { get; set; } = 2.6f;
     private float boundaryPosX;
     private float boundaryPosZ;
     private Vector3 boundaryPos;
