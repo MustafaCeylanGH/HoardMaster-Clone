@@ -92,7 +92,6 @@ public class HoleVertices : MonoBehaviour
     private void ChangeBoundaryValues()
     {
         holeMovement.boundaryXValue /= scaleUpValue * 0.95f;        
-        holeMovement.boundaryZValue /= scaleUpValue * 0.93f;
-       
+        holeMovement.boundaryZValue /= scaleUpValue * 0.93f;       
     }
 }

@@ -22,7 +22,5 @@ public class HoleCapacityController : MonoBehaviour
         {
             fullCircle.SetActive(false);
         }
-    }
-
-   
+    }   
 }
